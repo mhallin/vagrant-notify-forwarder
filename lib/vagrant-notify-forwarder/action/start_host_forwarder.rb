@@ -1,5 +1,4 @@
 require 'vagrant-notify-forwarder/utils'
-require 'vagrant-notify-forwarder/pid_handler'
 
 module VagrantPlugins
   module VagrantNotifyForwarder
@@ -7,7 +6,6 @@ module VagrantPlugins
       class StartHostForwarder
         def initialize(app, env)
           @app = app
-          @pid_handler = PidHandler.instance
         end
 
         def ensure_binary_downloaded(env)
@@ -25,8 +23,11 @@ module VagrantPlugins
         def start_watcher(env, command)
           pid = Process.spawn command
           Process.detach(pid)
-          @pid_handler.pids << pid
-          env[:ui].info "PIDS ARE #{@pid_handler.pids}"
+
+          pidfile = Utils.host_pidfile env
+          pidfile.open('a+') do |f|
+            f.write("#{pid}\n")
+          end
         end
 
         def call(env)

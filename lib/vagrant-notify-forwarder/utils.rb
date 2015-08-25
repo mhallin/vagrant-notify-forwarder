@@ -51,6 +51,10 @@ module VagrantPlugins
 
         path
       end
+
+      def self.host_pidfile(env)
+        env[:machine].data_dir.join('notify_watcher_host_pid')
+      end
     end
   end
 end
