@@ -22,6 +22,13 @@ module VagrantNotifyForwarderPlugin
                   VagrantNotifyForwarderPlugin::Action::StopHostForwarder
     end
 
+    register_destroy_hooks = lambda do |hook|
+      require_relative "vagrant-notify-forwarder/action"
+
+      hook.before Vagrant::Action::Builtin::GracefulHalt,
+                  VagrantNotifyForwarderPlugin::Action::StopHostForwarder
+    end
+
     config "notify_forwarder" do
       require_relative "vagrant-notify-forwarder/config"
 
@@ -33,6 +40,8 @@ module VagrantNotifyForwarderPlugin
 
     action_hook :stop_notify_forwarder, :machine_action_halt, &register_halt_hooks
     action_hook :stop_notify_forwarder, :machine_action_reload, &register_halt_hooks
+
+    action_hook :stop_notify_forwarder, :machine_action_destroy, &register_destroy_hooks
 
   end
 

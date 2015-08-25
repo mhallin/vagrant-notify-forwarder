@@ -81,8 +81,8 @@ module VagrantNotifyForwarderPlugin
         Process.detach(pid)
 
         pidfile = Utils.host_pidfile env
-        pidfile.open('w+') do |f|
-          f.write(pid)
+        pidfile.open('a+') do |f|
+          f.write("#{pid}\n")
         end
       end
 
@@ -98,18 +98,16 @@ module VagrantNotifyForwarderPlugin
           path = ensure_binary_downloaded env
           return unless path
 
-          args = "watch -c 127.0.0.1:#{port}"
-
           env[:machine].config.vm.synced_folders.each do |id, options|
             unless options[:disabled]
               hostpath = File.absolute_path(options[:hostpath])
               guestpath = options[:guestpath]
 
-              args += " #{hostpath} #{guestpath}"
+              args = "watch -c 127.0.0.1:#{port} #{hostpath} #{guestpath}"
+              start_watcher env, "#{path} #{args}"
             end
           end
 
-          start_watcher env, "#{path} #{args}"
         end
       end
     end
@@ -125,14 +123,17 @@ module VagrantNotifyForwarderPlugin
         return unless env[:machine].config.notify_forwarder.enable
 
         pidfile = Utils.host_pidfile env
+
         if File.exists? pidfile
           pidfile.open('r') do |f|
-            pid = f.read.to_i
-
-            begin
-              Process.kill 'TERM', pid
-            rescue Errno::ESRCH
+            f.readlines.each do |process|
+              pid = process.to_i
+              begin
+                Process.kill 'TERM', pid
+              rescue Errno::ESRCH
+              end
             end
+            pidfile.delete
           end
         end
       end
