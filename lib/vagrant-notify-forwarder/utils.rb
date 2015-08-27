@@ -21,12 +21,12 @@ module VagrantPlugins
 
       def self.ensure_binary_downloaded(env, os, hardware)
         download_urls = {
-            [:linux, :x86_64] => %w(https://github.com/mhallin/notify-forwarder/releases/download/release/v0.1.0/notify-forwarder_linux_x64
-                                7d14996963f45d9b1c85e78d0aa0c94371d585d0ccabae482c2ef5968417a7f0),
-            [:darwin, :x86_64] => %w(https://github.com/mhallin/notify-forwarder/releases/download/release/v0.1.0/notify-forwarder_osx_x64
-                                 d8ad61d9b70394b55bc22c94771ca6f88f0f51868617c3b2c55654ebde866c23),
-            [:freebsd, :x86_64] => %w(https://github.com/mhallin/notify-forwarder/releases/download/release/v0.1.0/notify-forwarder_freebsd_x64
-                                  2df0884958b2469dd7113660cf2de01e9e5dd8fcad0213bff3335833e6668f84),
+            [:linux, :x86_64] => %w(https://github.com/mhallin/notify-forwarder/releases/download/release/v0.1.1/notify-forwarder_linux_x64
+                                fc00ce7e30ae87daa10fb3bc4d77e06571998b408ff79a4aef3189f5210dc914),
+            [:darwin, :x86_64] => %w(https://github.com/mhallin/notify-forwarder/releases/download/release/v0.1.1/notify-forwarder_osx_x64
+                                 317f3ffea15393668bf04b128cef1545031eaf306eeb2c4a345a95d8c6e1c941),
+            [:freebsd, :x86_64] => %w(https://github.com/mhallin/notify-forwarder/releases/download/release/v0.1.1/notify-forwarder_freebsd_x64
+                                  082ceac8f5fbda6abc5e2872a6c748241f243f2d780c96d50b3f11f8e96ca65b),
         }
 
         url, sha256sum = download_urls[[os, hardware]]
