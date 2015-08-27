@@ -21,3 +21,4 @@ tmp
 mkmf.log
 Vagrantfile
 /.vagrant
+Gemfile.lock
