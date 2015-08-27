@@ -5,7 +5,7 @@ require 'vagrant-notify-forwarder/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "vagrant-notify-forwarder"
-  spec.version       = VagrantNotifyForwarderPlugin::VERSION
+  spec.version       = VagrantPlugins::VagrantNotifyForwarder::VERSION
   spec.authors       = ["Magnus Hallin"]
   spec.email         = ["mhallin@gmail.com"]
   spec.summary       = "A vagrant plugin that forwards file system events from the host to the guest"

@@ -1,7 +1,6 @@
-module VagrantNotifyForwarderPlugin
-  module Config
-
-    class Config < Vagrant.plugin("2", :config)
+module VagrantPlugins
+  module VagrantNotifyForwarder
+    class Config < Vagrant.plugin(2, :config)
       attr_accessor :port
       attr_accessor :enable
 
@@ -15,6 +14,5 @@ module VagrantNotifyForwarderPlugin
         @enable = true if @enable == UNSET_VALUE
       end
     end
-
   end
 end

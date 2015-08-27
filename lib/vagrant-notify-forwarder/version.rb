@@ -1,3 +1,5 @@
-module VagrantNotifyForwarderPlugin
-  VERSION = "0.2.0"
+module VagrantPlugins
+  module VagrantNotifyForwarder
+    VERSION = "0.2.0"
+  end
 end
