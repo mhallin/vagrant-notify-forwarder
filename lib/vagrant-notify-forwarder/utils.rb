@@ -1,3 +1,5 @@
+require 'vagrant/util/downloader'
+
 module VagrantPlugins
   module VagrantNotifyForwarder
     class Utils
