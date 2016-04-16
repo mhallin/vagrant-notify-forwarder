@@ -27,6 +27,8 @@ module VagrantPlugins
                                  317f3ffea15393668bf04b128cef1545031eaf306eeb2c4a345a95d8c6e1c941),
             [:freebsd, :x86_64] => %w(https://github.com/mhallin/notify-forwarder/releases/download/release/v0.1.1/notify-forwarder_freebsd_x64
                                   082ceac8f5fbda6abc5e2872a6c748241f243f2d780c96d50b3f11f8e96ca65b),
+            [:freebsd, :amd64] => %w(https://github.com/mhallin/notify-forwarder/releases/download/release/v0.1.1/notify-forwarder_freebsd_x64
+                                  082ceac8f5fbda6abc5e2872a6c748241f243f2d780c96d50b3f11f8e96ca65b),
         }
 
         url, sha256sum = download_urls[[os, hardware]]
