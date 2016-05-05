@@ -44,7 +44,7 @@ module VagrantPlugins
 
             env[:machine].config.vm.synced_folders.each do |id, options|
               unless options[:disabled]
-                hostpath = File.absolute_path(options[:hostpath])
+                hostpath = options[:hostpath]
                 guestpath = options[:guestpath]
 
                 args = "watch -c 127.0.0.1:#{port} #{hostpath} #{guestpath}"
