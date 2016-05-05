@@ -39,7 +39,9 @@ module VagrantPlugins
           port = env[:machine].config.notify_forwarder.port
 
           env[:machine].communicate.upload(path, "/tmp/notify-forwarder")
+          env[:ui].output("Starting notify-forwarder ...")
           env[:machine].communicate.execute("nohup /tmp/notify-forwarder receive -p #{port} &")
+          env[:ui].detail("Notify-forwarder: guest listening for file change notifications on 0.0.0.0:#{port}.")
         end
       end
     end

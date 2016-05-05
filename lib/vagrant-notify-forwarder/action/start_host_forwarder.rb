@@ -49,6 +49,8 @@ module VagrantPlugins
 
                 args = "watch -c 127.0.0.1:#{port} #{hostpath} #{guestpath}"
                 start_watcher env, "#{path} #{args}"
+                env[:ui].detail("Notify-forwarder: host sending file change notifications to 127.0.0.1:#{port}")
+                env[:ui].detail("Notify-forwarder: host forwarding notifications on #{hostpath} to #{guestpath}")
               end
             end
           end
