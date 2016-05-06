@@ -39,3 +39,8 @@ machine, add the following line to your `Vagrantfile`:
 ```ruby
 config.notify_forwarder.enable = false
 ```
+
+## Contributors
+
+* [CharlieC3](https://github.com/CharlieC3)
+* [hedinfaok](https://github.com/hedinfaok)
