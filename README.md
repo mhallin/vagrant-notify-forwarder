@@ -24,6 +24,15 @@ config.notify_forwarder.port = 22020 # Or your port number
 The server and guest binaries will be automatically downloaded from the notify-forwarder repo's
 releases and verified with SHA256.
 
+### Permissions
+
+The client in the guest OS will run as root by default, assuming passwordless `sudo` works. If this
+does *not* work, you can disable privilege escalation in your `Vagrantfile`:
+
+```ruby
+config.notify_forwarder.run_as_root = false
+```
+
 ## Supported operating systems
 
 To conserve size and dependencies, the plugin downloads binaries for supported platforms. This
@@ -44,3 +53,4 @@ config.notify_forwarder.enable = false
 
 * [CharlieC3](https://github.com/CharlieC3)
 * [hedinfaok](https://github.com/hedinfaok)
+* [seff](https://github.com/seff)
