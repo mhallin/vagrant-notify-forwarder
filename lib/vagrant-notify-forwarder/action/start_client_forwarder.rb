@@ -31,6 +31,8 @@ module VagrantPlugins
         def call(env)
           @app.call env
 
+          return if $BOOT_SAVED
+
           return unless env[:machine].config.notify_forwarder.enable
 
           path = ensure_binary_downloaded env
